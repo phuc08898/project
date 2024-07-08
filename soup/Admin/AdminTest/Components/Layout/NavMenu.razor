@@ -1,0 +1,167 @@
+﻿
+<div class="top-row ps-3 navbar navbar-dark">
+@*     <div class="container-fluid " style=" display:flex;justify-content:center;font-family: serif;font-weight: bolder;">
+        <a class="navbar-brand" href="">MENU ADMIN </a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div> *@
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu " aria-hidden="true"></span> <samp style="font-size:20px ;font-family: emoji;font-weight:bold">Home</samp>
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <div>
+                <ul class="nav-menu-parent">
+                    <li class="btn-show-menu">
+                      
+                        <button class="js-btn-show-menu btn-hide-menu">Quán Lý Dịch Vụ
+                            <i class="icon-size js-icon-hide ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                </svg>
+                            </i>
+                            <i class="icon-hide">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
+                                </svg>
+                            </i>
+                        </button>
+                        <ul class="js-show-menu-icon-hide">
+                            <li>
+                                <NavLink class="nav-link" href="products">
+                                    <span class="font-size-menu" aria-hidden="true"></span> Tất Cả Dịch Vụ
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="products/create">
+                                    <span class="font-size-menu" aria-hidden="true"></span> Thêm Dịch Vụ
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="Category">
+                                    <span class="font-size-menu" aria-hidden="true"></span> Phân Loại Dịch Vụ
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="Oder">
+                                    <span class="font-size-menu" aria-hidden="true"></span> Quản Lý Đơn Hàng
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+             @* phần kênh khuyyeens mãi  *@
+            <div >
+                <ul class="nav-menu-parent">
+                    <li class="btn-show-menu">
+                        <button class="js-btn-show-menu  btn-hide-menu">Kênh Khuyến Mãi
+                            <i class="icon-size js-icon-hide ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                </svg>
+                            </i>
+                            <i class="icon-hide">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
+                                </svg>
+                            </i>
+                        </button>
+                        <ul class="js-show-menu-icon-hide">
+                            <li>
+                                <NavLink class="nav-link" href="ListDiscount">
+                                    <span class="font-size-menu" aria-hidden="true"></span> Khuyến Mãi Dịch Vụ
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="products/create">
+                                    <span class="font-size-menu" aria-hidden="true"></span> Mức Hạng Dịch Vụ
+                                </NavLink>
+                            </li>
+                           
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <div >
+                <ul class="nav-menu-parent">
+                    <li class="btn-show-menu">
+                        <button class="js-btn-show-menu  btn-hide-menu">Quản Lý Khách Hàng
+                            <i class="icon-size js-icon-hide ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                </svg>
+                            </i>
+                            <i class="icon-hide">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
+                                </svg>
+                            </i>
+                        </button>
+                        <ul class="js-show-menu-icon-hide">
+                            <li>
+                                <NavLink class="nav-link" href="products">
+                                    <span class="font-size-menu" aria-hidden="true"></span> Thông Tin Khách Hàng
+                                </NavLink>
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <div >
+                <ul class="nav-menu-parent">
+                    <li class="btn-show-menu">
+                        <button class="js-btn-show-menu  btn-hide-menu">Tài Chính
+                            <i class="icon-size js-icon-hide ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                </svg>
+                            </i>
+                            <i class="icon-hide">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
+                                </svg>
+                            </i>
+                        </button>
+                        <ul class="js-show-menu-icon-hide">
+                            <li>
+                                <NavLink class="nav-link" href="products">
+                                    <span class="font-size-menu"  aria-hidden="true"></span> Doanh Thu
+                                </NavLink>
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+      
+        </div>
+     
+    </nav>
+</div>
+
+
+
+<script src="./javascript/main.js"></script>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

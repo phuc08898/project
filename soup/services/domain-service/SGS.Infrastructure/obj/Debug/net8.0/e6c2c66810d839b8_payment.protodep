@@ -1,0 +1,2 @@
+obj\Debug\net8.0\IntegrationService\GrpcService/Payment.cs \
+obj\Debug\net8.0\IntegrationService\GrpcService/PaymentGrpc.cs: IntegrationService/GrpcService/payment.proto

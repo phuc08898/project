@@ -1,0 +1,61 @@
+﻿@page "/ListDiscount"
+@rendermode InteractiveServer
+@using AdminTest.Models.Entity
+@using AdminTest.Models.Enums
+@using AdminTest.Components.Pages.CategoryPages
+@inject HttpClient Http
+@inject ICategoryService CategoryService
+@inject NavigationManager Navigation
+@inject NotificationService NotificationService
+<head>
+    <link href="./style/main.css" rel="stylesheet" />
+</head>
+<h3 id="tile-name" style="margin-top:20px">Chương trình Khuyến Mãi</h3>
+<div class="infor-marketing" style="background-color:#f8f8f8;border-radius: 10px;height: 250px;margin:20px 40px">
+        <h5 style="padding-top:20px; padding-left:20px">
+            Thông tin cơ bản
+        </h5>
+    <div class="mb-3" style="display:flex;padding:15px 20px;align-items:center" > 
+        <label for="formGroupExampleInput" class="form-label" style="margin-right:20px">
+            Tên chương trình khuyến mãi
+        </label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Vui lòng nhập tên chương trình khuyễn mãi" style="width:35% "> 
+    </div>
+    <div style="width:46%; display:flex; justify-content:end;position:relative;top:-24px; color:#565758; font-size:14px">
+               <span>Tên chương trình khuyến mãi sẽ hiển thị với người mua.</span>
+           </div>
+    <div class="mb-3" style="display:flex;padding:15px 20px;align-items:center">
+        <label for="formGroupExampleInput" class="form-label" style="margin-right:20px; min-width:200px">
+           Thời gian khuyến mãi
+        </label>
+        <div class="date" style="width:35%">
+
+            <div class="date-input-group" style="width:50%">
+
+                <input type="date" id="start-date" name="start-date" required style="width:100%;height:35px;border-radius:3px;border-color:#565758">
+            </div>
+
+            <div class="date-input-group" style="width:50%">
+            
+                <input type="date" id="end-date" name="end-date" required style="width:100%;height:35px;border-radius:3px;border-color:#565758; boder:1px solid #565758">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="infor-marketing" style="background-color:#f8f8f8;border-radius: 10px;height: auto;margin:20px 40px; padding:15px 0px">
+    <h5 style="padding-top:20px; padding-left:20px">
+        sản phẩm khuyễn mãi
+    </h5>
+    <span style=" color:#565758; font-size:14px;padding-top:20px; padding-left:20px">Thêm sản phẩm vào chương trình khuyến mãi và thiết lập giá khuyến mãi.</span>
+    <div style="margin:20px 10px">
+        <button type="submit" class="btn btn-primary btn-all" style="background-color:white !important;color:#4dc4a2; boder:1px solid #4dc4a2; padding: 6px 40px">+ Thêm sản phẩm </button>
+    </div>
+</div>
+<div class="btn-cancel-add" style="display:flex;align-items:center; justify-content:end;align-content:center">
+    <button type="button" class="btn" data-bs-toggle="button">Hủy bỏ</button>
+    <button type="submit" class="btn btn-primary btn-all" style="padding:10px 40px;margin:0px 20px">Xác nhận</button>
+</div>
+
+@code {
+
+}

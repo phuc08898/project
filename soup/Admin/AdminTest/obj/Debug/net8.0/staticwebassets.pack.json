@@ -1,0 +1,77 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\AdminTest.bundle.scp.css",
+      "PackagePath": "staticwebassets\\AdminTest.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\wwwroot\\ClientQuery\\axiosClient.js",
+      "PackagePath": "staticwebassets\\ClientQuery\\axiosClient.js"
+    },
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\wwwroot\\ClientQuery\\httpQueryBuilder.js",
+      "PackagePath": "staticwebassets\\ClientQuery\\httpQueryBuilder.js"
+    },
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\wwwroot\\ClientQuery\\index.js",
+      "PackagePath": "staticwebassets\\ClientQuery\\index.js"
+    },
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\wwwroot\\ClientQuery\\package.json",
+      "PackagePath": "staticwebassets\\ClientQuery\\package.json"
+    },
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\wwwroot\\ClientQuery\\pnpm-lock.yaml",
+      "PackagePath": "staticwebassets\\ClientQuery\\pnpm-lock.yaml"
+    },
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\wwwroot\\javascript\\main.js",
+      "PackagePath": "staticwebassets\\javascript\\main.js"
+    },
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\wwwroot\\logo\\dowload.png",
+      "PackagePath": "staticwebassets\\logo\\dowload.png"
+    },
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\wwwroot\\logo\\logo.png",
+      "PackagePath": "staticwebassets\\logo\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\PHUC\\source\\Repos\\KioskCT\\soup\\Admin\\AdminTest\\wwwroot\\style\\main.css",
+      "PackagePath": "staticwebassets\\style\\main.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AdminTest.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.AdminTest.props",
+      "PackagePath": "build\\AdminTest.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.AdminTest.props",
+      "PackagePath": "buildMultiTargeting\\AdminTest.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.AdminTest.props",
+      "PackagePath": "buildTransitive\\AdminTest.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

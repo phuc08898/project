@@ -1,0 +1,16 @@
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\bin\Debug\net8.0\SGS.Application.deps.json
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\bin\Debug\net8.0\SGS.Application.dll
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\bin\Debug\net8.0\SGS.Application.pdb
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\bin\Debug\net8.0\SGS.Domain.dll
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\bin\Debug\net8.0\SGS.Domain.pdb
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\obj\Debug\net8.0\SGS.Application.csproj.AssemblyReference.cache
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\obj\Debug\net8.0\SGS.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\obj\Debug\net8.0\SGS.Application.AssemblyInfoInputs.cache
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\obj\Debug\net8.0\SGS.Application.AssemblyInfo.cs
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\obj\Debug\net8.0\SGS.Application.csproj.CoreCompileInputs.cache
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\obj\Debug\net8.0\SGS.Application.sourcelink.json
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\obj\Debug\net8.0\SGS.Appl.944E311F.Up2Date
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\obj\Debug\net8.0\SGS.Application.dll
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\obj\Debug\net8.0\refint\SGS.Application.dll
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\obj\Debug\net8.0\SGS.Application.pdb
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Application\obj\Debug\net8.0\ref\SGS.Application.dll

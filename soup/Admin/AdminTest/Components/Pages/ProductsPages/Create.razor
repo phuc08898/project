@@ -1,0 +1,210 @@
+﻿@page "/products/create"
+@rendermode InteractiveServer
+@using AdminTest.Models.Entity
+@using AdminTest.Models.Enums
+@using AdminTest.Components.Pages.CategoryPages
+@using Microsoft.Net.Http.Headers
+@using Radzen
+@inject HttpClient Http
+@inject IProductService ProductService
+@inject ICategoryService CategoryService
+@inject NavigationManager Navigation
+@inject NotificationService NotificationService
+@inject IJSRuntime JS
+
+<PageTitle>Create</PageTitle>
+<h3 id="tile-name" style="margin-top:20px">Thêm Dịch Vụ</h3>
+<head>
+    <link href="./style/main.css" rel="stylesheet" />
+</head>
+<PageTitle>Thêm Sản Phẩm</PageTitle>
+<div>
+    <h3 id="title-name" style="margin-top:20px"></h3>
+</div>
+<div class="bog-create" style="justify-content:space-around">
+    <div class="product-image-container">
+        <div class="image-input-wrapper">
+            <RadzenImage Path="@imgPath" Style="width: 100%; height: 100%;object-fit: cover" @onclick="TriggerFileInput" />
+            <InputFile @bind-Value=@_product.ImgUrl OnChange=@(e => changeimg(e)) @bind-FileName=@fileName @bind-FileSize=@fileSize TValue="string" class="w-100" style="display:none" MaxFileSize="1024*1024*10" id="fileInput" />
+        </div>
+    </div>
+    <div class="row row-add-info">
+        <div class="">
+            <EditForm Method="POST" Model="Products" OnValidSubmit="PostHTML" FormName="CreateProductForm">
+                <ValidationSummary class="text-danger" />
+                <div class="BackgroundAddProduct row g-3" style="display:flex; justify-content:center">
+                    <div class="col-12 gird__column7-12">
+                        <h6 class="nameAllInfo" style="font-weight:600; margin-bottom:0px">Thông Tin Cơ Bản</h6>
+                        <span style="color: #cdcdcd; font-size: 12px;">
+                            Tạo dịch vụ bao gồm: Tên dịch vụ, số lượng, giá, phân loại
+                        </span>
+                        <!-- NAME Products -->
+                        <div class="col-md-12" style="margin-top:20px">
+                            <label for="name" class="form-label" style="font-weight:bold;color:#565758">
+                                Tên Dịch Vụ:
+                            </label>
+                            <InputText placeholder="Nhập Tên Dịch Vụ" id="productName" @bind-Value="Products.Name" class="form-control heght-input" />
+                            <ValidationMessage For="() => Products.Name" class="text-danger" />
+                        </div>
+                        <div class="row">
+                            <!-- lấy PHÂN LOẠI  -->
+
+                            <div class="col-md-4">
+                                <RadzenLabel Text=" Loại Dịch Vụ:" Component="DropDownClear" Style="margin-right: 8px; vertical-align: middle; margin-bottom:5px;margin-top:22px; font-weight:bold;color:#565758" />
+                                <RadzenDropDown @bind-Value=@Products.CategoryId Data=@categories TextProperty="Name" ValueProperty="Id" AllowClear=true Placeholder="Chọn phân loại" Style="width: 100%; max-width: 400px;" Name="DropDownClear" />
+                            </div>
+                            <!-- lấy SỐ LƯỢNG  -->
+                            <div class="col-md-4">
+                                <label for="quantity" class="form-label" style="margin-top:20px;font-weight:bold;color:#565758">
+                                    Số Lượng:
+                                </label>
+                                <InputNumber placeholder="Nhập Số Lượng" id="quantity" @bind-Value="Products.Quantity" class="form-control heght-input" />
+                                <ValidationMessage For="() => Products.Quantity" class="text-danger" />
+                            </div>
+                            <!-- lấy giá   -->
+                            <div class="col-md-4">
+                                <label for="slug" class="form-label" style="margin-top:20px;font-weight:bold;color:#565758">
+                                    Giá:
+                                </label>
+                                <InputNumber placeholder="Nhập giá" id="Price" @bind-Value="Products.Price" class="form-control heght-input" />
+                                <ValidationMessage For="() => Products.Price" class="text-danger" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-all">Tạo Dịch Vụ</button>
+                </div>
+            </EditForm>
+        </div>
+        <EditForm Model="variant" OnValidSubmit="AddVariant" FormName="variantForm">
+            <div class="BackgroundAddProduct input-variant">
+                <h6 style="margin-bottom:5px;font-weight:bold;color:#565758" class="nameAllInfo">
+                    Biến Thể Dịch Vụ
+                </h6>
+                <div style="margin-bottom:20px">
+                    <span style="color: #cdcdcd; font-size: 12px;">
+                        Tạo biến thể nếu sản phẩm có hơn một tùy chọn, ví dụ như về kích thước hay màu sắc.
+                    </span>
+                </div>
+
+                @foreach (var v in variants)
+                {
+                    <div class="total-three-item" style="display: flex; justify-content: space-between!important">
+                        <div class="input-info" style=" width:46%">
+                            <label for="name" class="form-label">Tên Biến Thể:</label>
+                            <InputText placeholder="Nhập Tên Biến Thể" @bind-Value="v.Name" class="form-control heght-input" style="margin-bottom:20px" />
+                            <ValidationMessage For="@(() => v.Name)" class="text-danger" />
+                        </div>
+                        <div class="input-info" style="width:46%">
+                            <label for="price" class="form-label">Giá Biến Thể:</label>
+                            <InputNumber placeholder="Nhập Giá Biến Thể" @bind-Value="v.Price" class="form-control heght-input" style="margin-bottom:20px" />
+                            <ValidationMessage For="@(() => v.Price)" class="text-danger" />
+                        </div>
+                        <span @onclick="() => RemoveVariant(v)" style="cursor: pointer; color: red;display: flex;align-items: center;position: relative;top: 8px;left: 15px;">
+                           <span>Xóa </span>
+                        </span>
+                    </div>
+                }
+                <button style="margin-top:10px; font-size: 14px;padding: 7px 20px;" type="submit" class="btn btn-primary btn-all">
+                    Thêm Biến Thể +
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+
+<div>
+    <button type="button" class="btn" style="background-color:#FF504D; border-color:#FF504D">
+        <a href="/products" style="text-decoration:none;color:white">Quay Lại</a>
+    </button>
+</div>
+<script>
+    function triggerFileInput(id) {
+        document.getElementById(id).click();
+    }
+</script>
+@code {
+    private Product _product = new Product();
+    Category[]? categories;
+    private Variants variant = new Variants();
+    private List<Variants> variants = new List<Variants>();
+    string? categoryId;
+    string imgPath = "./logo/dowload.png";
+    IBrowserFile? image;
+    string? fileName;
+    long? fileSize;
+    [SupplyParameterFromForm]
+    public Product Products
+    {
+        get => _product;
+        set
+        {
+            _product = value;
+            StateHasChanged();
+        }
+
+    }
+    async void TriggerFileInput()
+    {
+        await JS.InvokeVoidAsync("triggerFileInput", "fileInput");
+    }
+    protected async Task PostHTML()
+    {
+        _product.Variants = variants;
+        using var content = new MultipartFormDataContent();
+        StreamContent streamContent = new StreamContent(image?.OpenReadStream());
+        var streamcontent = streamContent ?? null;
+        content.Add(streamcontent, "file", image.Name);
+        var response = await ProductService.UploadFiles(content);
+        if (response.ResultCode == ErrorCodes.NoContent)
+            _product.ImgUrl = response.Message;
+        else
+        {
+            var notify = new NotificationMessage { Severity = NotificationSeverity.Info, Summary = response.ResultCode.ToString(), Detail = response.Message, Duration = 4000 };
+            NotificationService.Notify(notify);
+        }
+        response = await ProductService.AddProduct(_product);
+        var noti = new NotificationMessage { Severity = NotificationSeverity.Info, Summary = response.ResultCode.ToString(), Detail = response.Message, Duration = 4000 };
+        NotificationService.Notify(noti);
+    }
+    async Task changeimg(InputFileChangeEventArgs e)
+    {
+        var format = "image/jpg";
+        if (e.File != null)
+        {
+            NotificationMessage noti;
+            if (fileSize > 10 * 1024 * 1024) // 10 MB
+            {
+                noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "", Detail = "File size exceeds 10 MB", Duration = 4000 };
+                NotificationService.Notify(noti);
+                return;
+            }
+
+            var resizedImageFile = await e.File.RequestImageFileAsync(format, 150, 150);
+            byte[] binaryImageData = new byte[resizedImageFile.Size];
+            await resizedImageFile.OpenReadStream().ReadAsync(binaryImageData);
+            string base64EncodedImageData = Convert.ToBase64String(binaryImageData);
+            imgPath = $"data:{format};base64,{base64EncodedImageData}";
+            image = resizedImageFile;
+            StateHasChanged();
+            noti = new NotificationMessage { Severity = NotificationSeverity.Info, Summary = "", Detail = $"{fileName} value changed", Duration = 4000 };
+            NotificationService.Notify(noti);
+        }
+    }
+    private void AddVariant()
+    {
+        // Add the current variant to the list and reset the variant
+        variants.Add(new Variants { Name = variant.Name, Price = variant.Price });
+        variant = new Variants();
+    }
+    void RemoveVariant(Variants variant)
+    {
+        variants.Remove(variant);
+        StateHasChanged();
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        categories = await CategoryService.GetAllCategory();
+    }
+}

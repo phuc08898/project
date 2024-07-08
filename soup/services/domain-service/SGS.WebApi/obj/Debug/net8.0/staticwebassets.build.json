@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "SILR1mwXGZ3P5qEyPFs3FoGkmL2fR9wkDIEyV20yoRA=",
+  "Source": "SGS.WebApi",
+  "BasePath": "_content/SGS.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

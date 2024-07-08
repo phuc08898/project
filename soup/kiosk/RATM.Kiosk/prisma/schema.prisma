@@ -1,0 +1,61 @@
+datasource db {
+  provider = "mysql"
+  url      = env("VITE_LOCAL_DATABASE_URL")
+}
+generator client {
+  provider = "prisma-client-js"
+}
+model Configs {
+  key   String  @id
+  value String  @db.VarChar(255)
+  desc  String?
+}
+
+// summary: đơn vị quảng cáo
+model AdverUnit {
+  id         String       @id
+  name       String
+  expiredBy  DateTime // UTC
+  isActived  Boolean      @default(true)
+  isDeleted  Boolean      @default(false)
+  Advertises Advertises[]
+}
+
+// summary: quảng cáo
+model Advertises {
+  id        String     @id
+  name      String
+  type      String // IMG || VID
+  pathUrl   String
+  expiredBy DateTime // UTC
+  duration  Int        @default(0) // second & > 0
+  isActived Boolean    @default(true)
+  advUnitId String?
+  advUnit   AdverUnit? @relation(fields: [advUnitId], references: [id])
+}
+
+// model Post {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   title     String   @db.VarChar(255)
+//   content   String?
+//   published Boolean  @default(false)
+//   author    User     @relation(fields: [authorId], references: [id])
+//   authorId  Int
+// }
+
+// model Profile {
+//   id     Int     @id @default(autoincrement())
+//   bio    String?
+//   user   User    @relation(fields: [userId], references: [id])
+//   userId Int     @unique
+// }
+
+// model User {
+//   id      Int      @id @default(autoincrement())
+//   email   String   @unique
+//   name    String?
+//   posts   Post[]
+//   profile Profile?
+// }

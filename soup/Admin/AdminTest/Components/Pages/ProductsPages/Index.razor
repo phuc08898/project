@@ -1,0 +1,100 @@
+﻿@page "/products"
+@rendermode InteractiveServer
+@using AdminTest.Models.Entity
+@using AdminTest.Models.Enums
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using AdminTest.Components.Pages.CategoryPages
+@using Radzen
+@using Radzen.Blazor
+@inject IProductService ProductService
+@inject ICategoryService CategoryService
+@inject DialogService DialogService
+@inject NotificationService NotificationService
+<head>
+    <link href="./style/main.css" rel="stylesheet" />
+</head>
+<PageTitle>Quản Lý Dịch Vụ</PageTitle>
+<h1 id="tile-name">Quản Lý Dịch Vụ</h1>
+<button type="button" class="btn btn-all  btn-all">
+    <a href="products/create" class="btn-a" style="height:auto">Thêm Dịch Vụ</a>
+</button>
+
+<RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.SimpleWithMenu" AllowSorting="true" Pag eSize="15" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Center" ShowPagingSummary="true"
+                Data="@products" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or" SelectionMode="DataGridSelectionMode.Single">
+    <Columns>
+        <RadzenDataGridColumn Title="Hình Ảnh" Frozen="true" Sortable="false" Filterable="false" Width="60px" TextAlign="TextAlign.Center">
+            <Template Context="data">
+                <RadzenImage Path="@(path+data.ImgUrl)" AlternateText="@(data.Name + " " + data.Category.Name)" />
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn Property="Name" Filterable="true" Title="Tên Sản Phẩm" Frozen="true" Width="60px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn Property="Category.Name" Filterable="true" Title="Loại" Frozen="true" Width="60px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn Property="Price" Sortable="true" Title="Giá" Frozen="true" Width="60px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn Property="Quantity" Title="Số Lượng" Frozen="true" Width="60px" TextAlign="TextAlign.Center" />
+        
+        <RadzenDataGridColumn Context="order" Filterable="false" Sortable="false" Width="60px" TextAlign="TextAlign.Left" Frozen="true" FrozenPosition="FrozenColumnPosition.Left">
+            <Template Context="data">               
+                <RadzenButton Click=@((args) => OpenDetail(data)) Icon="info_outline" Class=""  style="background-color:#f4f5f9;color:#4dc4a2;"/>
+                <button style="padding:0px;border:0px" >
+                    <a style="padding:0px;border-radius:0px" href="products/edit">
+                        <RadzenButton Icon="mode_edit" Class="" style="background-color:#f4f5f9;color:black" />
+                </a></button>
+                <RadzenButton Click=@((args) => DeleteProduct(data)) Icon="delete_forever" Class="" style="background-color:#f4f5f9;color:#df0c0c" />
+            </Template>
+        </RadzenDataGridColumn> 
+    </Columns>
+</RadzenDataGrid>
+@code {
+    Product[]? products;
+    Product? product;
+    Category[]? Categories;
+    Category? category;
+    Variants? variant;
+    string? path = "http://localhost:5005/";
+    bool showDialog = false;
+    public async Task OpenDetail(Product request)
+    {
+        if (request != null)
+        {
+            await DialogService.OpenAsync<ProductDetail>("Chi Tiết Sản Phẩm",
+             new Dictionary<string, object>() { { "Product", request } },
+             new DialogOptions() { Width = "700px", Height = "512px", Resizable = true });
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        products = await ProductService.GetAllProduct();
+        List<Product> Lproduct = products.ToList();
+        foreach (var product in Lproduct)
+        {
+            if (product.Status == "DELETED")
+            {
+                Lproduct.Remove(product);
+            }
+
+        }
+        products = Lproduct.ToArray();
+        Categories = await CategoryService.GetAllCategory();
+    }
+
+    public async Task DeleteProduct(Product request)
+    {
+        bool? result = await DialogService.Confirm("Bạn có chắc chắn muốn xóa sản phẩm này?", "Xóa Sản Phẩm", 
+        new ConfirmOptions()
+            {
+                OkButtonText = "Có", 
+
+                CancelButtonText = "Không" ,
+            });
+        if (result == true)
+        {
+            request.Status = "DELETED";
+            var response = await ProductService.DeleteProduct(request);
+            var noti = new NotificationMessage { Severity = NotificationSeverity.Info, Summary = response.ResultCode.ToString(), Detail = response.Message, Duration = 4000 };
+            NotificationService.Notify(noti);
+            await OnInitializedAsync();
+        }
+    }
+}

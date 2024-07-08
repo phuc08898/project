@@ -1,0 +1,85 @@
+﻿@page "/Category/Crate"
+@rendermode InteractiveServer
+@using AdminTest.Models.Entity
+@using AdminTest.Models.Enums
+@using AdminTest.Components.Pages.CategoryPages
+@inject HttpClient Http
+@inject ICategoryService CategoryService
+@inject NavigationManager Navigation
+@inject NotificationService NotificationService
+
+<PageTitle>Create</PageTitle>
+<h3 id="tile-name" style="margin-top:20px">Thêm Phân Loại</h3>
+<head>
+    <link href="./style/main.css" rel="stylesheet" />
+</head>
+<PageTitle>Thêm Phân Loại</PageTitle>
+<div>
+    <h3 id="title-name" style="margin-top:20px"></h3>
+</div>
+<div class="bog-create" style="justify-content:space-around">
+    <div class="">
+        <div class=" col-12 ">
+            <RadzenLabel Text=" Loại Dịch Vụ:" Component="DropDownClear" Style="margin-right: 8px; vertical-align: middle; margin-bottom:5px; font-weight:bold;color:#565758" />
+            <RadzenDropDown @bind-Value=@categories.ParentId Data=@Categories TextProperty="Name" ValueProperty="Id" AllowClear=true Placeholder="Chọn phân loại" Style="width: 100%; max-width: 400px;max-height:400px !important" Name="DropDownClear" />
+        </div>
+    </div>
+    <div class="row row-add-info">
+        <div class="">
+            <EditForm Method="POST" Model="categories" OnValidSubmit="PostHTML" FormName="CreatecategoryForm">
+                <ValidationSummary class="text-danger" />
+                <div class="BackgroundAddProduct row g-3" style="display:flex; justify-content:center">
+                    <div class="col-12 gird__column7-12">
+                        <h6 class="nameAllInfo" style="font-weight:600; margin-bottom:0px">Thông Tin Cơ Bản</h6>
+                        <span style="color: #cdcdcd; font-size: 12px;">
+                            Tạo phân loại bao gồm: Tên phân loại
+                        </span>
+                        <!-- NAME Products -->
+                        <div class="col-md-12" style="margin-top:20px">
+                            <label for="name" class="form-label" style="font-weight:bold;color:#565758">
+                                Tên Phân Loại:
+                            </label>
+                            <InputText placeholder="Nhập Tên Phân Loại" id="categoryName" @bind-Value="categories.Name" class="form-control heght-input" />
+                            <ValidationMessage For="() => categories.Name" class="text-danger" />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-all">Tạo Phân Loại</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <button type="button" class="btn" style="background-color:#FF504D; border-color:#FF504D">
+        <a href="/Category" style="text-decoration:none;color:white">Quay Lại</a>
+    </button>
+</div>
+
+@code {
+    private Category _category = new Category();
+    private Category[]? Categories;
+
+    [SupplyParameterFromForm]
+    public Category categories
+    {
+        get => _category;
+        set
+        {
+            _category = value;
+            StateHasChanged();
+        }
+
+    }
+    protected async Task PostHTML()
+    {
+        var response = await CategoryService.AddCategory(_category);
+        var noti = new NotificationMessage { Severity = NotificationSeverity.Info, Summary = response.ResultCode.ToString(), Detail = response.Message, Duration = 4000 };
+        NotificationService.Notify(noti);
+    } 
+    protected override async Task OnInitializedAsync()
+    {
+        Categories = await CategoryService.GetAllCategory();
+    }
+}

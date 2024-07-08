@@ -1,0 +1,15 @@
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\bin\Debug\net8.0\SGS.Domain.deps.json
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\bin\Debug\net8.0\SGS.Domain.runtimeconfig.json
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\bin\Debug\net8.0\SGS.Domain.dll
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\bin\Debug\net8.0\SGS.Domain.pdb
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\obj\Debug\net8.0\SGS.Domain.csproj.AssemblyReference.cache
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\obj\Debug\net8.0\SGS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\obj\Debug\net8.0\SGS.Domain.AssemblyInfoInputs.cache
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\obj\Debug\net8.0\SGS.Domain.AssemblyInfo.cs
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\obj\Debug\net8.0\SGS.Domain.csproj.CoreCompileInputs.cache
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\obj\Debug\net8.0\SGS.Domain.sourcelink.json
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\obj\Debug\net8.0\SGS.Domain.dll
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\obj\Debug\net8.0\refint\SGS.Domain.dll
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\obj\Debug\net8.0\SGS.Domain.pdb
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\obj\Debug\net8.0\SGS.Domain.genruntimeconfig.cache
+C:\Users\PHUC\source\repos\KioskCT\soup\services\domain-service\SGS.Domain\obj\Debug\net8.0\ref\SGS.Domain.dll

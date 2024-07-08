@@ -1,0 +1,44 @@
+﻿@page "/Category"
+@using AdminTest.Models.Entity
+@using AdminTest.Models.Enums
+@inject ICategoryService CategoryService
+@rendermode InteractiveServer
+@code {
+    private OkResponse<Category[]>? CategoryResponse { get; set; }
+    private Category[]? Categories { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        CategoryResponse = await CategoryService.GetAllCategory();
+        Categories = CategoryResponse.Data ?? [];
+    }
+
+}
+<PageTitle>Phâm Loại Dịch vụ</PageTitle>
+<link href="./style/main.css" rel="stylesheet" />
+<h1 id="tile-name">Loại Dịch Vụ</h1>
+<head>
+    <link rel="stylesheet" href="./app.css">
+</head>
+
+<div>
+    <button type="button" class="btn  btn-all" style="background-color:var(--btn-primeri);border-color:var(--btn-primeri)">
+        <a href="Category/Crate" class="btn-a" style="height:auto">Thêm Phân Loại</a>
+    </button>
+</div>
+
+<RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.SimpleWithMenu" AllowSorting="true" Pag eSize="15" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Center" ShowPagingSummary="true"
+                Data="@Categories" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or" SelectionMode="DataGridSelectionMode.Single">
+    <Columns>
+        <RadzenDataGridColumn Property="Name" Filterable="true" Title="Tên Phân Loại" Frozen="true" Width="60px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn Property="Category.ParentId" Filterable="true" Title="ParentId" Frozen="true" Width="60px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn Property="Category.Slug" Sortable="true" Title="Slug" Frozen="true" Width="60px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn Property="Status" Title="Trạng Thái" Frozen="true" Width="60px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn  />
+
+        <RadzenDataGridColumn Context="order" Filterable="false" Sortable="false" Width="10px" TextAlign="TextAlign.Left" Frozen="true" FrozenPosition="FrozenColumnPosition.Left">
+
+        <RadzenButton Icon="delete_forever" Class="" style="background-color:#f4f5f9;color:#df0c0c" />
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+

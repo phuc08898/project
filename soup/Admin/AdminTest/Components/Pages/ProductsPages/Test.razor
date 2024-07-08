@@ -1,0 +1,87 @@
+﻿@page "/test"
+
+@rendermode InteractiveServer
+@using AdminTest.Models.Entity
+@using AdminTest.Models.Enums
+@using AdminTest.Components.Pages.CategoryPages
+@using System.Drawing;
+@inject HttpClient Http
+@inject IProductService ProductService
+@inject ICategoryService CategoryService
+@inject NavigationManager Navigation
+@inject NotificationService NotificationService
+
+<div class="container-fluid">
+    <div class="row px-3">
+        <div class="col-lg-6 offset-lg-3 p-3">
+            <RadzenCard>
+                <h4 class="mb-4">Employee: <b>@( _product.Name)</b></h4>
+                <InputFile @bind-Value=@_product.ImgUrl OnChange=@(e => changeimg(e)) @bind-FileName=@fileName @bind-FileSize=@fileSize TValue="string" class="hidden" MaxFileSize="1024*1024*10" />
+                <RadzenImage Path=@imgPath Style="width: 100%; height: 100%;object-fit: cover;" />
+            </RadzenCard>
+            <RadzenButton Click=@(args => PostHTML())> post </RadzenButton>
+        </div>
+    </div>
+</div>
+@code {
+    private Product _product = new Product();
+    private Category[]? categories;
+    private Variants _variant = new Variants();
+    private List<Variants>? variants = new List<Variants>();
+    string img;
+    IBrowserFile image;
+    string fileName,path;
+    long? fileSize;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        _product = await ProductService.GetProduct("ff4dbefa61834e068f72f8cf4c31f316");
+        variants = _product.Variants;
+        categories = await CategoryService.GetAllCategory();
+        categories = categories.OrderBy(c => c.Name).ToArray();
+    }
+    void OnChange(string value, string name)
+    {
+        var noti = new NotificationMessage { Severity = NotificationSeverity.Info, Summary = "", Detail = $"{name} value changed", Duration = 4000 };
+        NotificationService.Notify(noti);
+    }
+
+    void OnError(UploadErrorEventArgs args, string name)
+    {
+        var noti = new NotificationMessage { Severity = NotificationSeverity.Info, Summary = "", Detail = $"{args.Message}", Duration = 4000 };
+        NotificationService.Notify(noti);
+    }
+    string imgPath;
+
+    async Task changeimg(InputFileChangeEventArgs e)
+    {
+        var format = "image/jpg";
+        if (e.File != null)
+        {
+            if (fileSize > 1024 * 1024) // 10 MB
+            {
+                // Display an error message or notification
+                var noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "", Detail = "File size exceeds 10 MB", Duration = 4000 };
+                NotificationService.Notify(noti);
+                return;
+            }
+            var resizedImageFile = await e.File.RequestImageFileAsync(format,150,150);
+            byte[] binaryImageData = new byte[resizedImageFile.Size];
+            await resizedImageFile.OpenReadStream().ReadAsync(binaryImageData);        
+            string base64EncodedImageData = Convert.ToBase64String(binaryImageData);
+            imgPath = $"data:{format};base64,{base64EncodedImageData}";
+            image = resizedImageFile;
+            StateHasChanged();
+        }
+        }
+    protected async Task PostHTML()
+    {       
+        using var content = new MultipartFormDataContent();
+        StreamContent streamcontent = new StreamContent(image.OpenReadStream());
+        content.Add(streamcontent, "file", image.Name);
+        var response = await ProductService.UploadFiles(content);
+        var noti = new NotificationMessage { Severity = NotificationSeverity.Info, Summary = response.ResultCode.ToString(), Detail = response.Message, Duration = 4000 };
+        NotificationService.Notify(noti);
+    }
+}

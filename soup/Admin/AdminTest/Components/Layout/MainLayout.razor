@@ -1,0 +1,26 @@
+﻿@inherits LayoutComponentBase
+<div class="" style="background-color:#4dc4a2;position:fixed;z-index:100; width:100% ">
+    <a id="header" href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" style="display: flex;justify-content: space-between;align-items:center">
+        <img src="./logo/logo.png" alt="Alternate Text"  style="width:180px; height:50px; margin-left:20px"/>
+        <span class=" " style="color:white;text-align:right;margin-right:10px; font-family: sans-serif;font-size:1rem">Admin kiosk</span>
+    </a>
+</div>
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main  style="margin-top:40px">
+      
+<MainNavigation />
+    
+        <div class="page-wrapper">
+            <div class="container-fluid mt-2">
+                @Body
+            </div>
+        </div>
+    </main>
+</div>
+<RadzenDialog @rendermode="@RenderMode.InteractiveServer" />
+<RadzenNotification @rendermode="@RenderMode.InteractiveServer" />
+<RadzenComponents @rendermode="@RenderMode.InteractiveServer" />
